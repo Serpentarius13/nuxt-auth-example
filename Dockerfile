@@ -29,4 +29,5 @@ ENV PORT=${PORT}
 COPY --from=builder /app/.output /app/.output
 
 CMD ["node", "/app/.output/server/index.mjs"]
-EXPOSE ${PORT}
+
+EXPOSE 3000
