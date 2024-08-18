@@ -1,7 +1,6 @@
 # Базовый образ для сборки
 
 ARG NODE_VERSION=20
-ARG name=nuxt-app
 
 FROM node:${NODE_VERSION}-alpine AS base 
 
@@ -14,7 +13,7 @@ WORKDIR /app
 
 FROM base AS builder 
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json package-lock.json ./
 RUN npm install --omit=dev
 COPY . . 
 
