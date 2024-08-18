@@ -31,7 +31,7 @@ COPY . .
 RUN npm run build
 RUN npm prune
 RUN npx prisma migrate deploy
-RUN npm prisma generate
+RUN npx prisma generate
 
 # Старт приложения
 
