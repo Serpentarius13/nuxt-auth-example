@@ -5,7 +5,6 @@ ARG NODE_VERSION=20
 FROM node:${NODE_VERSION}-alpine AS base 
 
 ARG PORT=3000
-ENV NODE_ENV=production
 
 WORKDIR /app
 
@@ -14,11 +13,15 @@ WORKDIR /app
 FROM base AS builder 
 
 COPY package.json package-lock.json ./
-RUN npm install --omit=dev
+RUN npm install
 COPY . . 
 
 RUN npm run build
 RUN npm prune
+
+ENV DATABASE_URL=${DATABASE_URL}
+
+RUN npx prisma migrate deploy
 
 # Старт приложения
 
