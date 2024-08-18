@@ -2,10 +2,7 @@ import { authService } from "~/server/services/auth";
 import { GoogleUser, OAuthProvider } from "~/server/types/oauth";
 
 export default oauthGoogleEventHandler({
-  config: {
-    clientId: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID,
-    clientSecret: process.env.NUXT_OAUTH_GOOGLE_CLIENT_SECRET,
-  },
+  config: {},
   async onSuccess(
     event,
     {
