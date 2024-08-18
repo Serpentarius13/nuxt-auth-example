@@ -4,6 +4,9 @@ ARG NODE_VERSION=20
 
 FROM node:${NODE_VERSION}-alpine AS base 
 
+ENV NODE_OPTIONS=--max_old_space_size=2048
+
+
 ARG PORT=3000
 
 WORKDIR /app
@@ -18,9 +21,6 @@ COPY . .
 
 RUN npm run build
 RUN npm prune
-
-ENV DATABASE_URL=${DATABASE_URL}
-
 RUN npx prisma migrate deploy
 
 # Старт приложения
