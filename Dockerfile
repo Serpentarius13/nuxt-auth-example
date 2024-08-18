@@ -39,6 +39,7 @@ FROM base
 
 ENV PORT=${PORT}
 COPY --from=builder /app/.output /app/.output
+COPY --from=builder /app/node_modules/@prisma/client /app/node_modules/@prisma/client
 
 CMD ["node", "/app/.output/server/index.mjs"]
 
