@@ -28,10 +28,10 @@ COPY package.json package-lock.json ./
 RUN npm install
 COPY . . 
 
-RUN npm run build
-RUN npm prune
 RUN npx prisma migrate deploy
 RUN npx prisma generate
+RUN npm run build
+RUN npm prune
 
 # Старт приложения
 
@@ -39,7 +39,6 @@ FROM base
 
 ENV PORT=${PORT}
 COPY --from=builder /app/.output /app/.output
-COPY --from=builder /app/node_modules/@prisma/client /app/node_modules/@prisma/client
 
 CMD ["node", "/app/.output/server/index.mjs"]
 
